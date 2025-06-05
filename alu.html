@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>4-Bit ALU - Portfolio Details</title>
+  <meta content="4-bit Arithmetic Logic Unit implementing digital logic operations" name="description">
+  <meta content="ALU, digital logic, computer architecture, electronics, engineering" name="keywords">
+  
+  <style>
+    :root {
+      --primary: #3498db;
+      --secondary: #2c3e50;
+      --accent: #e74c3c;
+      --light: #ecf0f1;
+      --dark: #2c3e50;
+      --success: #27ae60;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    h1, h2, h3, h4, h5 {
+      color: var(--secondary);
+    }
+    
+    .portfolio-details-page {
+      padding-top: 60px;
+    }
+    
+    /* Page Title */
+    .page-title {
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+      color: white;
+      padding: 60px 0 40px;
+      margin-bottom: 40px;
+    }
+    
+    .page-title h1 {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    
+    .breadcrumbs {
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .breadcrumbs ol {
+      display: flex;
+      list-style: none;
+      padding: 0;
+    }
+    
+    .breadcrumbs li:not(:last-child)::after {
+      content: '/';
+      margin: 0 10px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .breadcrumbs a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    
+    .breadcrumbs a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+    
+    .breadcrumbs .current {
+      color: white;
+    }
+    
+    /* Portfolio Details */
+    .section {
+      padding: 60px 0;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .portfolio-details-slider {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      height: 500px;
+      background: #f0f0f0;
+    }
+    
+    .swiper-wrapper {
+      height: 100%;
+      display: flex;
+    }
+    
+    .swiper-slide {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 100%;
+    }
+    
+    .swiper-slide > div {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .swiper-button-prev, 
+    .swiper-button-next {
+      color: white;
+      background: rgba(0, 0, 0, 0.3);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+    
+    .swiper-button-prev {
+      left: 20px;
+    }
+    
+    .swiper-button-next {
+      right: 20px;
+    }
+    
+    .swiper-button-prev:hover, 
+    .swiper-button-next:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+    
+    .swiper-pagination {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      z-index: 10;
+    }
+    
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.5;
+      cursor: pointer;
+    }
+    
+    .swiper-pagination-bullet-active {
+      background: var(--primary);
+      opacity: 1;
+    }
+    
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -15px;
+    }
+    
+    .col-lg-8 {
+      width: 66.66%;
+      padding: 0 15px;
+    }
+    
+    .col-lg-3 {
+      width: 33.33%;
+      padding: 0 15px;
+    }
+    
+    .portfolio-description h2 {
+      color: var(--secondary);
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 10px;
+    }
+    
+    .portfolio-description p {
+      margin-bottom: 20px;
+    }
+    
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    
+    .tech-item {
+      background: var(--primary);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+    
+    .testimonial-item {
+      background: #f8f9fa;
+      border-left: 3px solid var(--primary);
+      padding: 20px;
+      margin: 30px 0;
+      border-radius: 0 5px 5px 0;
+    }
+    
+    .portfolio-info {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 20px;
+    }
+    
+    .portfolio-info h3 {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--light);
+      color: var(--primary);
+    }
+    
+    .portfolio-info ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .portfolio-info li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .portfolio-info li:last-child {
+      border-bottom: none;
+    }
+    
+    .portfolio-info strong {
+      color: var(--secondary);
+      display: inline-block;
+      width: 120px;
+    }
+    
+    .btn-visit {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 10px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 15px;
+      transition: 0.3s;
+      text-align: center;
+      width: 100%;
+    }
+    
+    .btn-visit:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+    }
+    
+    /* Module Grid */
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .module-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    
+    .module-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .module-header {
+      background: var(--primary);
+      color: white;
+      padding: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
+    
+    .module-content {
+      padding: 20px;
+    }
+    
+    .module-content h4 {
+      margin-bottom: 10px;
+      color: var(--secondary);
+    }
+    
+    /* Team Section */
+    .team-section {
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(52, 152, 219, 0.05);
+      border-radius: 10px;
+    }
+    
+    .team-section h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .team-member {
+      text-align: center;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .member-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin: 0 auto 10px;
+    }
+    
+    /* ALU Simulation */
+    .simulation-container {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      margin: 30px 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .simulation-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .simulation-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .input-group {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .input-group label {
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .bit-selector {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .bit {
+      width: 40px;
+      height: 40px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .bit.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    .operation-select {
+      padding: 10px;
+      border-radius: 5px;
+      border: 2px solid #ddd;
+      font-size: 1rem;
+    }
+    
+    .result-display {
+      background: #f8f9fa;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .result-bits {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .result-bit {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      background: #3498db;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--secondary);
+      color: white;
+      padding: 60px 0 30px;
+      text-align: center;
+    }
+    
+    .footer .sitename {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: white;
+    }
+    
+    .footer p {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      opacity: 0.8;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    .copyright, .credits {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin-top: 10px;
+    }
+    
+    .credits a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .credits a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .col-lg-8, .col-lg-3 {
+        width: 100%;
+      }
+      
+      .portfolio-details-slider {
+        height: 400px;
+      }
+      
+      .portfolio-info {
+        margin-top: 40px;
+        position: relative;
+      }
+      
+      .simulation-controls {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .portfolio-details-slider {
+        height: 300px;
+      }
+      
+      .page-title h1 {
+        font-size: 2rem;
+      }
+      
+      .module-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body class="portfolio-details-page">
+
+  <!-- Page Title -->
+  <div class="page-title">
+    <div class="container">
+      <nav class="breadcrumbs">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li class="current">4-Bit ALU Project</li>
+        </ol>
+      </nav>
+      <h1>4-Bit Arithmetic Logic Unit (ALU)</h1>
+    </div>
+  </div><!-- End Page Title -->
+
+  <!-- Portfolio Details Section -->
+  <section id="portfolio-details" class="portfolio-details section">
+
+    <div class="container">
+
+      <div class="portfolio-details-slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div style="background:#2c3e50; color:white;">
+              <h3 style="font-size:2rem; margin-bottom:20px;">4-Bit Arithmetic Logic Unit</h3>
+              <p style="max-width:800px; margin:0 auto 30px; font-size:1.2rem;">Digital circuit implementing core computer operations</p>
+              <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+                <div style="text-align:center;">
+                  <div style="width:80px; height:80px; background:#3498db; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 15px; font-size:1.8rem;">+</div>
+                  <div>Arithmetic Operations</div>
+                </div>
+                <div style="text-align:center;">
+                  <div style="width:80px; height:80px; background:#3498db; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 15px; font-size:1.8rem;">&</div>
+                  <div>Logical Operations</div>
+                </div>
+                <div style="text-align:center;">
+                  <div style="width:80px; height:80px; background:#3498db; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 15px; font-size:1.8rem;">~</div>
+                  <div>Complements</div>
+                </div>
+                <div style="text-align:center;">
+                  <div style="width:80px; height:80px; background:#3498db; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 15px; font-size:1.8rem;">±</div>
+                  <div>Adder/Subtractor</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div style="background:#2980b9; color:white;">
+              <h3 style="font-size:2rem; margin-bottom:20px;">Core Operations</h3>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:800px; margin:0 auto; text-align:left;">
+                <div>
+                  <h4 style="margin-bottom:10px;">Logical Operations</h4>
+                  <ul style="list-style-type:square; padding-left:20px;">
+                    <li>Bitwise AND</li>
+                    <li>Bitwise OR</li>
+                    <li>Bitwise XOR</li>
+                    <li>1's Complement</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style="margin-bottom:10px;">Arithmetic Operations</h4>
+                  <ul style="list-style-type:square; padding-left:20px;">
+                    <li>4-bit Addition</li>
+                    <li>4-bit Subtraction</li>
+                    <li>2's Complement</li>
+                    <li>Increment/Decrement</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style="margin-bottom:10px;">Technical Features</h4>
+                  <ul style="list-style-type:square; padding-left:20px;">
+                    <li>4-bit data path</li>
+                    <li>Carry Look-Ahead Adder</li>
+                    <li>Overflow detection</li>
+                    <li>Zero detection</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style="margin-bottom:10px;">Implementation</h4>
+                  <ul style="list-style-type:square; padding-left:20px;">
+                    <li>74LS series ICs</li>
+                    <li>Modular design</li>
+                    <li>Breadboard prototype</li>
+                    <li>LED output display</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div style="background:#2c3e50; color:white;">
+              <h3 style="font-size:2rem; margin-bottom:30px;">Educational Value</h3>
+              <div style="display:flex; gap:30px; max-width:800px; margin:0 auto;">
+                <div style="flex:1; background:rgba(255,255,255,0.1); padding:25px; border-radius:10px;">
+                  <div style="font-size:3rem; margin-bottom:15px;">🎓</div>
+                  <h4 style="margin-bottom:15px;">Computer Architecture</h4>
+                  <p>Core component of CPU design and operation</p>
+                </div>
+                <div style="flex:1; background:rgba(255,255,255,0.1); padding:25px; border-radius:10px;">
+                  <div style="font-size:3rem; margin-bottom:15px;">🔌</div>
+                  <h4 style="margin-bottom:15px;">Digital Logic</h4>
+                  <p>Practical implementation of logic gates and circuits</p>
+                </div>
+                <div style="flex:1; background:rgba(255,255,255,0.1); padding:25px; border-radius:10px;">
+                  <div style="font-size:3rem; margin-bottom:15px;">🧩</div>
+                  <h4 style="margin-bottom:15px;">Modular Design</h4>
+                  <p>Understanding complex systems through components</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-button-prev">❮</div>
+        <div class="swiper-button-next">❯</div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <div class="row justify-content-between gy-4 mt-4">
+        <div class="col-lg-8">
+          <div class="portfolio-description">
+            <h2>4-Bit Arithmetic Logic Unit</h2>
+            <p>
+              The 4-Bit Arithmetic Logic Unit (ALU) is a fundamental component of computer architecture that performs 
+              arithmetic and logical operations. This project implements a fully functional 4-bit ALU capable of 
+              executing operations such as addition, subtraction, bitwise AND, OR, XOR, and complement operations. 
+              Designed as an educational tool, it demonstrates the core principles of digital logic and computer 
+              organization.
+            </p>
+            
+            <h3 style="margin:30px 0 15px;">Project Overview</h3>
+            <p>
+              This ALU project was developed to illustrate the inner workings of a critical CPU component. 
+              It features a 4-bit data path and supports multiple operations selected through control lines. 
+              The implementation uses standard 74LS series integrated circuits on a breadboard, providing 
+              hands-on experience with digital logic design and computer architecture principles.
+            </p>
+            
+            <div class="tech-list">
+              <span class="tech-item">Digital Logic</span>
+              <span class="tech-item">Computer Architecture</span>
+              <span class="tech-item">74LS ICs</span>
+              <span class="tech-item">Arithmetic Operations</span>
+              <span class="tech-item">Logical Operations</span>
+              <span class="tech-item">Combinational Circuits</span>
+            </div>
+            
+            <h3 style="margin:30px 0 15px;">ALU Operations</h3>
+            
+            <div class="module-grid">
+              <div class="module-card">
+                <div class="module-header">Arithmetic Operations</div>
+                <div class="module-content">
+                  <h4>Addition & Subtraction</h4>
+                  <p>4-bit addition using carry look-ahead adder and subtraction using 2's complement method</p>
+                </div>
+              </div>
+              
+              <div class="module-card">
+                <div class="module-header">Logical AND</div>
+                <div class="module-content">
+                  <h4>Bitwise AND</h4>
+                  <p>Performs bitwise AND operation on two 4-bit inputs: A AND B</p>
+                </div>
+              </div>
+              
+              <div class="module-card">
+                <div class="module-header">Logical OR</div>
+                <div class="module-content">
+                  <h4>Bitwise OR</h4>
+                  <p>Performs bitwise OR operation on two 4-bit inputs: A OR B</p>
+                </div>
+              </div>
+              
+              <div class="module-card">
+                <div class="module-header">Logical XOR</div>
+                <div class="module-content">
+                  <h4>Bitwise XOR</h4>
+                  <p>Performs bitwise XOR operation on two 4-bit inputs: A XOR B</p>
+                </div>
+              </div>
+              
+              <div class="module-card">
+                <div class="module-header">1's Complement</div>
+                <div class="module-content">
+                  <h4>Bit Inversion</h4>
+                  <p>Calculates the 1's complement of input A by inverting all bits</p>
+                </div>
+              </div>
+              
+              <div class="module-card">
+                <div class="module-header">2's Complement</div>
+                <div class="module-content">
+                  <h4>Negative Representation</h4>
+                  <p>Calculates the 2's complement of input A for signed arithmetic</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="testimonial-item">
+              <p>
+                "The Arithmetic Logic Unit is the mathematical brain of a computer system. This 4-bit ALU project 
+                demonstrates how simple logic gates can be combined to perform complex arithmetic and logical 
+                operations - the foundation of all computing systems."
+              </p>
+            </div>
+            
+            <h3 style="margin:30px 0 15px;">ALU Simulation</h3>
+            
+            <div class="simulation-container">
+              <div class="simulation-header">
+                <h3>Interactive ALU Simulator</h3>
+                <p>Test different operations with 4-bit inputs</p>
+              </div>
+              
+              <div class="simulation-controls">
+                <div class="input-group">
+                  <label>Input A (4-bit)</label>
+                  <div class="bit-selector">
+                    <div class="bit" data-bit="a3">0</div>
+                    <div class="bit" data-bit="a2">0</div>
+                    <div class="bit" data-bit="a1">0</div>
+                    <div class="bit" data-bit="a0">0</div>
+                  </div>
+                </div>
+                
+                <div class="input-group">
+                  <label>Operation</label>
+                  <select class="operation-select" id="operation">
+                    <option value="add">Addition (A + B)</option>
+                    <option value="sub">Subtraction (A - B)</option>
+                    <option value="and">Bitwise AND (A & B)</option>
+                    <option value="or">Bitwise OR (A | B)</option>
+                    <option value="xor">Bitwise XOR (A ^ B)</option>
+                    <option value="notA">1's Complement (~A)</option>
+                    <option value="negA">2's Complement (-A)</option>
+                  </select>
+                </div>
+                
+                <div class="input-group">
+                  <label>Input B (4-bit)</label>
+                  <div class="bit-selector">
+                    <div class="bit" data-bit="b3">0</div>
+                    <div class="bit" data-bit="b2">0</div>
+                    <div class="bit" data-bit="b1">0</div>
+                    <div class="bit" data-bit="b0">0</div>
+                  </div>
+                </div>
+              </div>
+              
+              <button id="calculate-btn" style="display:block; width:100%; padding:12px; background:#3498db; color:white; border:none; border-radius:5px; font-size:1rem; cursor:pointer; transition:background 0.3s;">Calculate Result</button>
+              
+              <div class="result-display">
+                <h4>Result</h4>
+                <div class="result-bits">
+                  <div class="result-bit">0</div>
+                  <div class="result-bit">0</div>
+                  <div class="result-bit">0</div>
+                  <div class="result-bit">0</div>
+                </div>
+                <p style="margin-top:15px;">Decimal: <span id="decimal-result">0</span></p>
+              </div>
+            </div>
+            
+            <h3 style="margin:30px 0 15px;">Implementation Details</h3>
+            <p>
+              The ALU was implemented using standard TTL logic chips (74LS series) on a breadboard:
+            </p>
+            <ul style="padding-left:30px; margin:15px 0 20px;">
+              <li><strong>Arithmetic Unit:</strong> 74LS283 4-bit binary full adder for addition and subtraction</li>
+              <li><strong>Logic Operations:</strong> 74LS08 (AND), 74LS32 (OR), 74LS86 (XOR)</li>
+              <li><strong>Complement Circuits:</strong> 74LS04 (NOT gates) for 1's complement</li>
+              <li><strong>Control Logic:</strong> 74LS157 multiplexers for operation selection</li>
+              <li><strong>Input/Output:</strong> DIP switches for input, LEDs for output display</li>
+            </ul>
+            
+            <!-- <div class="team-section">
+              <h3>Project Team</h3>
+              <div class="team-grid">
+                <div class="team-member">
+                  <div class="member-icon">K</div>
+                  <h4>Khaled Elramikh</h4>
+                  <p>Team Leader</p>
+                </div>
+                <div class="team-member">
+                  <div class="member-icon">S</div>
+                  <h4>Samy Alrakhawy</h4>
+                  <p>Circuit Design</p>
+                </div>
+                <div class="team-member">
+                  <div class="member-icon">B</div>
+                  <h4>Basmala Galal</h4>
+                  <p>Project Design</p>
+                </div>
+                <div class="team-member">
+                  <div class="member-icon">K</div>
+                  <h4>Khaled Wasef</h4>
+                  <p>Documentation</p>
+                </div>
+                <div class="team-member">
+                  <div class="member-icon">H</div>
+                  <h4>Haitham Hisham</h4>
+                  <p>Testing</p>
+                </div>
+                <div class="team-member">
+                  <div class="member-icon">K</div>
+                  <h4>Kamal Thabet</h4>
+                  <p>Video Production</p>
+                </div>
+                <div class="team-member">
+                  <div class="member-icon">M</div>
+                  <h4>Mohamed Shawer</h4>
+                  <p>Photography</p>
+                </div>
+                <div class="team-member">
+                  <div class="member-icon">R</div>
+                  <h4>Royal Team</h4>
+                  <p>10+ Members</p>
+                </div>
+              </div>
+            </div> -->
+            
+            <h3 style="margin:30px 0 15px;">Educational Value</h3>
+            <p>
+              This ALU project provides significant educational benefits:
+            </p>
+            <ul style="padding-left:30px; margin:15px 0 20px;">
+              <li><strong>Hands-on experience:</strong> Students build and test a real CPU component</li>
+              <li><strong>Digital logic fundamentals:</strong> Reinforces understanding of logic gates and combinational circuits</li>
+              <li><strong>Computer architecture:</strong> Demonstrates how ALUs fit into overall computer design</li>
+              <li><strong>Problem-solving skills:</strong> Troubleshooting complex digital circuits</li>
+              <li><strong>Practical applications:</strong> Connects theory to real-world computing systems</li>
+            </ul>
+            
+            <p>
+              This 4-bit ALU project represents a significant achievement in educational electronics, providing 
+              students with a practical understanding of computer architecture fundamentals.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="portfolio-info">
+            <h3>Project Information</h3>
+            <ul>
+              <li><strong>Category</strong> Digital Electronics</li>
+              <li><strong>Institution</strong> Higher Institute of Engineering and Technology</li>
+              <li><strong>Department</strong> Electrical Engineering</li>
+              <li><strong>Location</strong> Kafr El-Sheikh, Egypt</li>
+              <li><strong>Project Date</strong> May 2023</li>
+              <li><strong>Supervisor</strong> Dr. Othama Tharwat</li>
+              <li><strong>Team</strong> Techno Team</li>
+            </ul>
+            
+            <h3 style="margin-top:30px;">Technical Specs</h3>
+            <ul>
+              <li><strong>Data Width:</strong> 4 bits</li>
+              <li><strong>Operations:</strong> 7 core operations</li>
+              <li><strong>Speed:</strong> 10 MHz max</li>
+              <li><strong>Power:</strong> 5V DC</li>
+              <li><strong>Technology:</strong> TTL (74LS series)</li>
+            </ul>
+            
+            <h3 style="margin-top:30px;">Learning Resources</h3>
+            <ul>
+              <li>Circuit diagrams</li>
+              <li>Operation manual</li>
+              <li>Theory documentation</li>
+              <li>Video demonstrations</li>
+              <li>Simulation tools</li>
+            </ul>
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- /Portfolio Details Section -->
+
+  <footer class="footer">
+    <div class="container">
+      <h3 class="sitename">4-Bit ALU Project</h3>
+      <p>Fundamental computer architecture component implementation</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <span>© 2025</span> <strong class="px-1">khaled wasef</strong> <span>All Rights Reserved</span>
+        </div>
+        <div class="credits">
+          "والله ولى التوفيق" - And God is the Grantor of Success
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Slider functionality
+      const slides = document.querySelectorAll('.swiper-slide');
+      const pagination = document.querySelector('.swiper-pagination');
+      const prevBtn = document.querySelector('.swiper-button-prev');
+      const nextBtn = document.querySelector('.swiper-button-next');
+      let currentSlide = 0;
+      
+      // Create pagination bullets
+      slides.forEach((_, index) => {
+        const bullet = document.createElement('div');
+        bullet.classList.add('swiper-pagination-bullet');
+        if (index === 0) bullet.classList.add('swiper-pagination-bullet-active');
+        bullet.addEventListener('click', () => goToSlide(index));
+        pagination.appendChild(bullet);
+      });
+      
+      // Update active slide
+      function updateSlide() {
+        slides.forEach((slide, index) => {
+          slide.style.display = index === currentSlide ? 'flex' : 'none';
+        });
+        
+        // Update pagination
+        document.querySelectorAll('.swiper-pagination-bullet').forEach((bullet, index) => {
+          bullet.classList.toggle('swiper-pagination-bullet-active', index === currentSlide);
+        });
+      }
+      
+      // Navigation functions
+      function goToSlide(index) {
+        currentSlide = index;
+        updateSlide();
+      }
+      
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateSlide();
+      }
+      
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        updateSlide();
+      }
+      
+      // Event listeners for slider
+      prevBtn.addEventListener('click', prevSlide);
+      nextBtn.addEventListener('click', nextSlide);
+      
+      // Auto slide
+      setInterval(nextSlide, 8000);
+      
+      // Initialize slider
+      updateSlide();
+      
+      // ALU Simulation functionality
+      const bits = document.querySelectorAll('.bit');
+      const resultBits = document.querySelectorAll('.result-bit');
+      const decimalResult = document.getElementById('decimal-result');
+      const calculateBtn = document.getElementById('calculate-btn');
+      const operationSelect = document.getElementById('operation');
+      
+      // Initialize input bits
+      let inputA = [0, 0, 0, 0];
+      let inputB = [0, 0, 0, 0];
+      
+      // Toggle bit values
+      bits.forEach(bit => {
+        bit.addEventListener('click', function() {
+          const bitType = this.dataset.bit;
+          const bitIndex = parseInt(bitType.charAt(1));
+          const inputType = bitType.charAt(0);
+          
+          // Toggle bit value (0 or 1)
+          const currentValue = this.textContent;
+          const newValue = currentValue === '0' ? '1' : '0';
+          this.textContent = newValue;
+          
+          // Update input array
+          if (inputType === 'a') {
+            inputA[bitIndex] = parseInt(newValue);
+          } else {
+            inputB[bitIndex] = parseInt(newValue);
+          }
+        });
+      });
+      
+      // Calculate ALU operation
+      calculateBtn.addEventListener('click', function() {
+        const operation = operationSelect.value;
+        let result = [0, 0, 0, 0];
+        let decimal = 0;
+        
+        // Convert input arrays to decimal
+        const a = parseInt(inputA.join(''), 2);
+        const b = parseInt(inputB.join(''), 2);
+        
+        // Perform selected operation
+        switch(operation) {
+          case 'add':
+            decimal = a + b;
+            break;
+          case 'sub':
+            decimal = a - b;
+            break;
+          case 'and':
+            decimal = a & b;
+            break;
+          case 'or':
+            decimal = a | b;
+            break;
+          case 'xor':
+            decimal = a ^ b;
+            break;
+          case 'notA':
+            decimal = 15 - a; // 15 is 1111 in binary (4-bit max)
+            break;
+          case 'negA':
+            // 2's complement is equivalent to 16 - a for 4-bit numbers
+            decimal = (16 - a) % 16;
+            break;
+        }
+        
+        // Handle overflow for 4-bit representation
+        if (decimal < 0) decimal += 16;
+        decimal = decimal % 16;
+        
+        // Convert decimal result to binary
+        const binary = decimal.toString(2).padStart(4, '0');
+        
+        // Update result display
+        for (let i = 0; i < 4; i++) {
+          resultBits[i].textContent = binary.charAt(i);
+        }
+        
+        decimalResult.textContent = decimal;
+      });
+      
+      // Initialize simulation
+      calculateBtn.click();
+    });
+  </script>
+</body>
+</html>

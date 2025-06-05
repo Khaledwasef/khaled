@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Vital Tech - Smart T-Shirt for Vital Sign Monitoring</title>
+  <meta content="Smart T-shirt for continuous health monitoring of vital signs" name="description">
+  <meta content="wearable tech, health monitoring, vital signs, smart clothing, IoT, medical technology" name="keywords">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1a73e8;
+      --secondary: #34a853;
+      --accent: #ea4335;
+      --light: #f8f9fa;
+      --dark: #202124;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    .portfolio-details-page {
+      padding-top: 60px;
+    }
+    
+    /* Page Title */
+    .page-title {
+      background: linear-gradient(135deg, var(--primary) 0%, #0d47a1 100%);
+      color: white;
+      padding: 60px 0 40px;
+      margin-bottom: 40px;
+    }
+    
+    .page-title h1 {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    
+    .breadcrumbs {
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .breadcrumbs ol {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      justify-content: center;
+    }
+    
+    .breadcrumbs li:not(:last-child)::after {
+      content: '/';
+      margin: 0 10px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .breadcrumbs a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    
+    .breadcrumbs a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+    
+    .breadcrumbs .current {
+      color: white;
+    }
+    
+    /* Portfolio Details */
+    .section {
+      padding: 60px 0;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    .portfolio-details-slider {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      margin-bottom: 50px;
+      height: 500px;
+    }
+    
+    .swiper-wrapper {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+    
+    .swiper-slide {
+      height: 100%;
+      flex-shrink: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .swiper-slide > div {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .swiper-button-prev, 
+    .swiper-button-next {
+      color: white;
+      background: rgba(0, 0, 0, 0.4);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      cursor: pointer;
+    }
+    
+    .swiper-button-prev:hover, 
+    .swiper-button-next:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+    
+    .swiper-button-prev {
+      left: 20px;
+    }
+    
+    .swiper-button-next {
+      right: 20px;
+    }
+    
+    .swiper-pagination {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+    
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .swiper-pagination-bullet-active {
+      background: white;
+      transform: scale(1.2);
+    }
+    
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -15px;
+    }
+    
+    .col-lg-8 {
+      width: 66.66%;
+      padding: 0 15px;
+    }
+    
+    .col-lg-3 {
+      width: 33.33%;
+      padding: 0 15px;
+    }
+    
+    .portfolio-description h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 2.2rem;
+      text-align: center;
+    }
+    
+    .portfolio-description p {
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+      justify-content: center;
+    }
+    
+    .tech-item {
+      background: var(--secondary);
+      color: white;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    
+    .testimonial-item {
+      background: white;
+      border-left: 4px solid var(--primary);
+      padding: 30px;
+      margin: 40px 0;
+      border-radius: 8px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+    
+    .quote-icon-left, .quote-icon-right {
+      color: var(--primary);
+      font-size: 1.8rem;
+      opacity: 0.7;
+    }
+    
+    .testimonial-content {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .testimonial-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 15px;
+      object-fit: cover;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    
+    .portfolio-info {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 20px;
+    }
+    
+    .portfolio-info h3 {
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--light);
+      color: var(--primary);
+      font-size: 1.6rem;
+      text-align: center;
+    }
+    
+    .portfolio-info ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .portfolio-info li {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+    }
+    
+    .portfolio-info li:last-child {
+      border-bottom: none;
+    }
+    
+    .portfolio-info strong {
+      color: var(--primary);
+      display: inline-block;
+      width: 130px;
+      font-weight: 600;
+    }
+    
+    .btn-visit {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      text-align: center;
+      width: 100%;
+      box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+    }
+    
+    .btn-visit:hover {
+      background: #0d62d9;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(26, 115, 232, 0.4);
+    }
+    
+    /* Components Section */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+    }
+    
+    .component-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+    }
+    
+    .component-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .component-icon {
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: var(--primary);
+      background: rgba(26, 115, 232, 0.05);
+    }
+    
+    .component-content {
+      padding: 25px;
+      text-align: center;
+    }
+    
+    .component-content h4 {
+      margin-bottom: 15px;
+      color: var(--dark);
+      font-size: 1.4rem;
+    }
+    
+    .component-content p {
+      color: #555;
+      line-height: 1.7;
+    }
+    
+    /* 3D T-Shirt Model Section */
+    /* 3D T-Shirt Section */
+    .model-section {
+      background: white;
+      border-radius: 10px;
+      padding: 40px;
+      margin: 40px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    
+    .model-container {
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1200px;
+      margin: 20px 0;
+    }
+    
+    .tshirt-model {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotate 20s infinite linear;
+    }
+    
+    .tshirt-model img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .tshirt-front {
+      transform: translateZ(75px);
+    }
+    
+    .tshirt-back {
+      transform: rotateY(180deg) translateZ(75px);
+    }
+    
+    .tshirt-left {
+      transform: rotateY(-90deg) translateZ(75px);
+    }
+    
+    .tshirt-right {
+      transform: rotateY(90deg) translateZ(75px);
+    }
+    
+    .tshirt-top {
+      transform: rotateX(90deg) translateZ(75px);
+    }
+    
+    .tshirt-bottom {
+      transform: rotateX(-90deg) translateZ(75px);
+    }
+    
+    @keyframes rotate {
+      0% { transform: rotateY(0); }
+      100% { transform: rotateY(360deg); }
+    }
+    
+    /* Video Section */
+    .video-section {
+      background: white;
+      border-radius: 15px;
+      padding: 50px 30px;
+      margin: 50px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    
+    .video-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    }
+    
+    .video-player {
+      width: 100%;
+      height: 450px;
+      background: #000;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, #1a1a2e, #16213e);
+    }
+    
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      opacity: 1;
+      transition: opacity 0.3s;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    
+    .video-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .play-btn {
+      width: 80px;
+      height: 80px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(26, 115, 232, 0.5);
+    }
+    
+    .play-btn:hover {
+      transform: scale(1.1);
+      background: #0d62d9;
+    }
+    
+    .video-overlay h3 {
+      font-size: 2.4rem;
+      margin-bottom: 15px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    
+    .video-overlay p {
+      max-width: 600px;
+      text-align: center;
+      font-size: 1.2rem;
+      opacity: 0.9;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .video-controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+    }
+    
+    .video-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+    }
+    
+    .video-btn:hover {
+      background: #0d62d9;
+      transform: translateY(-3px);
+    }
+    
+    /* Team Section */
+    .team-section {
+      background: white;
+      border-radius: 15px;
+      padding: 50px 30px;
+      margin: 50px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    
+    .team-section h3 {
+      margin-bottom: 40px;
+      color: var(--primary);
+      font-size: 2rem;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 30px;
+    }
+    
+    .team-member {
+      text-align: center;
+      padding: 25px 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .member-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 20px;
+      font-weight: bold;
+    }
+    
+    .team-member h4 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+    
+    .team-member p {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    /* Footer */
+    .footer {
+      background: linear-gradient(135deg, var(--primary) 0%, #0d47a1 100%);
+      color: white;
+      padding: 80px 0 40px;
+      text-align: center;
+    }
+    
+    .footer .sitename {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: white;
+      font-weight: 700;
+    }
+    
+    .footer p {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      opacity: 0.9;
+      font-size: 1.1rem;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+    
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      border-radius: 50%;
+      margin: 0 5px;
+      transition: all 0.3s ease;
+      font-size: 1.3rem;
+    }
+    
+    .social-links a:hover {
+      background: white;
+      color: var(--primary);
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      font-size: 1rem;
+      opacity: 0.8;
+      margin-top: 20px;
+    }
+    
+    .credits {
+      font-size: 1rem;
+      opacity: 0.8;
+      margin-top: 10px;
+      font-style: italic;
+    }
+    
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .col-lg-8 {
+        width: 60%;
+      }
+      
+      .col-lg-3 {
+        width: 40%;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .col-lg-8, .col-lg-3 {
+        width: 100%;
+      }
+      
+      .portfolio-details-slider {
+        height: 400px;
+      }
+      
+      .portfolio-info {
+        margin-top: 50px;
+      }
+      
+      .model-container {
+        height: 320px;
+      }
+      
+      .tshirt-model {
+        width: 250px;
+        height: 250px;
+      }
+      
+      .video-player {
+        height: 350px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .page-title h1 {
+        font-size: 2rem;
+      }
+      
+      .portfolio-details-slider {
+        height: 300px;
+      }
+      
+      .model-container {
+        height: 250px;
+      }
+      
+      .tshirt-model {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .video-player {
+        height: 250px;
+      }
+      
+      .component-icon {
+        height: 120px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .page-title {
+        padding: 40px 0 30px;
+      }
+      
+      .breadcrumbs ol {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .breadcrumbs li {
+        margin: 5px 0;
+      }
+      
+      .model-container {
+        height: 200px;
+      }
+      
+      .tshirt-model {
+        width: 160px;
+        height: 160px;
+      }
+    }
+  </style>
+</head>
+
+<body class="portfolio-details-page">
+
+  <!-- Page Title -->
+  <div class="page-title">
+    <div class="container">
+      <nav class="breadcrumbs">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li class="current">Vital Tech - Smart T-Shirt</li>
+        </ol>
+      </nav>
+      <h1>Vital Tech - Smart T-Shirt for Vital Sign Monitoring</h1>
+    </div>
+  </div><!-- End Page Title -->
+
+  <!-- Portfolio Details Section -->
+  <section id="portfolio-details" class="portfolio-details section">
+
+    <div class="container">
+
+      <div class="portfolio-details-slider">
+        <div class="swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="swiper-slide">
+            <div style="background:linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%); height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; color:white; padding:20px; text-align:center;">
+              <h3 style="font-size:2.2rem; margin-bottom:20px;">Revolutionary Health Monitoring Wearable</h3>
+              <p style="max-width:700px; font-size:1.3rem; margin-bottom:30px;">Continuous monitoring of vital signs through smart fabric technology</p>
+              <div style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap;">
+                <div style="text-align:center;">
+                  <div style="width:100px; height:100px; background:rgba(255,255,255,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 15px;">
+                    <span style="font-size:2.5rem; color:#34a853;">❤️</span>
+                  </div>
+                  <h4 style="font-size:1.2rem;">Heart Rate Monitoring</h4>
+                </div>
+                <div style="text-align:center;">
+                  <div style="width:100px; height:100px; background:rgba(255,255,255,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 15px;">
+                    <span style="font-size:2.5rem; color:#ea4335;">🌡️</span>
+                  </div>
+                  <h4 style="font-size:1.2rem;">Body Temperature</h4>
+                </div>
+                <div style="text-align:center;">
+                  <div style="width:100px; height:100px; background:rgba(255,255,255,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 15px;">
+                    <span style="font-size:2.5rem; color:#fbbc05;">💨</span>
+                  </div>
+                  <h4 style="font-size:1.2rem;">Respiration Rate</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="swiper-slide">
+            <div style="display:flex; height:100%; padding:30px; background:#ecf0f1; align-items:center;">
+              <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding-right:20px;">
+                <h3 style="color:#1a73e8; margin-bottom:25px; font-size:1.8rem;">System Architecture</h3>
+                <div style="background:white; border-radius:12px; padding:25px; box-shadow:0 8px 25px rgba(0,0,0,0.08);">
+                  <div style="display:flex; align-items:center; margin-bottom:20px; padding:12px; border-bottom:1px solid #eee;">
+                    <div style="width:40px; height:40px; background:#1a73e8; border-radius:8px; margin-right:20px; display:flex; align-items:center; justify-content:center; color:white; font-size:1.5rem;">📡</div>
+                    <div><strong style="font-size:1.2rem;">Sensors:</strong> Integrated biosensors in fabric</div>
+                  </div>
+                  <div style="display:flex; align-items:center; margin-bottom:20px; padding:12px; border-bottom:1px solid #eee;">
+                    <div style="width:40px; height:40px; background:#34a853; border-radius:8px; margin-right:20px; display:flex; align-items:center; justify-content:center; color:white; font-size:1.5rem;">💻</div>
+                    <div><strong style="font-size:1.2rem;">Microcontroller:</strong> ESP32 processing unit</div>
+                  </div>
+                  <div style="display:flex; align-items:center; padding:12px;">
+                    <div style="width:40px; height:40px; background:#ea4335; border-radius:8px; margin-right:20px; display:flex; align-items:center; justify-content:center; color:white; font-size:1.5rem;">📶</div>
+                    <div><strong style="font-size:1.2rem;">Connectivity:</strong> Wi-Fi/Bluetooth data transmission</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="swiper-slide">
+            <div style="background:linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%); height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:40px; color:white; text-align:center;">
+              <h3 style="font-size:2.2rem; margin-bottom:40px;">Healthcare Impact</h3>
+              <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:25px; max-width:1200px;">
+                <div style="background:rgba(255,255,255,0.12); padding:30px; border-radius:12px; backdrop-filter: blur(5px);">
+                  <div style="font-size:3.5rem; margin-bottom:20px;">👴</div>
+                  <h4 style="margin-bottom:15px; font-size:1.4rem;">Elderly Care</h4>
+                  <p style="font-size:1.1rem;">Continuous monitoring for seniors living independently</p>
+                </div>
+                <div style="background:rgba(255,255,255,0.12); padding:30px; border-radius:12px; backdrop-filter: blur(5px);">
+                  <div style="font-size:3.5rem; margin-bottom:20px;">🏃</div>
+                  <h4 style="margin-bottom:15px; font-size:1.4rem;">Athletic Performance</h4>
+                  <p style="font-size:1.1rem;">Real-time biometrics for professional athletes</p>
+                </div>
+                <div style="background:rgba(255,255,255,0.12); padding:30px; border-radius:12px; backdrop-filter: blur(5px);">
+                  <div style="font-size:3.5rem; margin-bottom:20px;">🏥</div>
+                  <h4 style="margin-bottom:15px; font-size:1.4rem;">Chronic Conditions</h4>
+                  <p style="font-size:1.1rem;">Early detection for heart disease and respiratory issues</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="swiper-button-prev">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="swiper-button-next">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <div class="row justify-content-between gy-4 mt-4">
+
+        <div class="col-lg-8">
+          <div class="portfolio-description">
+            <h2>Vital Tech Smart T-Shirt</h2>
+            <p>
+              The Vital Tech T-Shirt is a groundbreaking wearable technology solution designed for continuous monitoring of vital signs. 
+              This innovative smart garment integrates advanced biosensors within comfortable, flexible fabric to track key health metrics 
+              including heart rate, respiration, body temperature, and blood oxygen levels. The data is transmitted in real-time to healthcare 
+              providers or mobile devices, enabling proactive health management and early intervention.
+            </p>
+            
+            <h3 style="margin:40px 0 20px; font-size:1.8rem; text-align:center; color:#1a73e8;">Key Features</h3>
+            
+            <div class="components-grid">
+              <div class="component-card">
+                <div class="component-icon">
+                  <i class="fas fa-heartbeat" style="color:#ea4335;"></i>
+                </div>
+                <div class="component-content">
+                  <h4>Real-time Monitoring</h4>
+                  <p>Continuous tracking of vital signs with clinical-grade accuracy and instant alerts for abnormalities</p>
+                </div>
+              </div>
+              
+              <div class="component-card">
+                <div class="component-icon">
+                  <i class="fas fa-battery-full" style="color:#34a853;"></i>
+                </div>
+                <div class="component-content">
+                  <h4>Long Battery Life</h4>
+                  <p>7-day battery life with convenient wireless charging capability</p>
+                </div>
+              </div>
+              
+              <div class="component-card">
+                <div class="component-icon">
+                  <i class="fas fa-tshirt" style="color:#1a73e8;"></i>
+                </div>
+                <div class="component-content">
+                  <h4>Comfortable Design</h4>
+                  <p>Breathable, flexible fabric with washable electronics for all-day comfort</p>
+                </div>
+              </div>
+              
+              <div class="component-card">
+                <div class="component-icon">
+                  <i class="fas fa-chart-line" style="color:#fbbc05;"></i>
+                </div>
+                <div class="component-content">
+                  <h4>Advanced Analytics</h4>
+                  <p>AI-powered health insights, trend analysis, and personalized recommendations</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3D T-Shirt Model Section -->
+            <div class="model-section">
+              <h3>3D T-Shirt Model</h3>
+              <p>Explore our smart T-shirt from all angles with this interactive 3D model</p>
+              
+              <div class="model-container">
+                <div class="tshirt-model">
+                  <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="T-Shirt Front" class="tshirt-front">
+                  <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="T-Shirt Back" class="tshirt-back">
+                  <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="T-Shirt Left" class="tshirt-left">
+                  <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="T-Shirt Right" class="tshirt-right">
+                  <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="T-Shirt Top" class="tshirt-top">
+                  <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="T-Shirt Bottom" class="tshirt-bottom">
+                </div>
+              </div>
+              
+              <div class="tech-list">
+                <div class="tech-item">Flexible Sensors</div>
+                <div class="tech-item">Washable Electronics</div>
+                <div class="tech-item">Medical-grade Accuracy</div>
+                <div class="tech-item">Hypoallergenic Fabric</div>
+              </div>
+            </div>
+            
+            <!-- Video Section - Fixed Version -->
+            <div class="video-section">
+              <h3>Project Demonstration</h3>
+              <p>Watch our smart T-shirt in action with this detailed demonstration</p>
+              
+              <div class="video-container">
+                <div class="video-player">
+                  <!-- تم تعديل مسار الفيديو هنا بشكل صحيح -->
+                  <video id="techVideo" muted playsinline width="100%">
+                    <source src="./assets/vidoe/video1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <div id="videoOverlay" class="video-overlay">
+                    <div class="play-btn" id="playButton">
+                      <i class="fas fa-play"></i>
+                    </div>
+                    <h3>Vital Tech Demonstration</h3>
+                    <p>See how our smart T-shirt monitors vital signs in real-time</p>
+                  </div>
+                </div>
+              </div>
+              <div class="video-controls">
+                <button class="video-btn" id="playPauseBtn">Play/Pause</button>
+                <button class="video-btn" id="muteBtn">Mute/Unmute</button>
+                <button class="video-btn" id="fullscreenBtn">Fullscreen</button>
+              </div>
+            </div>
+            
+            <h3 style="margin:40px 0 20px; font-size:1.8rem; text-align:center; color:#1a73e8;">Technology Components</h3>
+            <p>
+              The Vital Tech T-Shirt integrates multiple advanced technologies to deliver comprehensive health monitoring:
+            </p>
+            
+            <div class="components-grid">
+              <div class="component-card">
+                <div class="component-icon">
+                  <i class="fas fa-microchip" style="color:#1a73e8;"></i>
+                </div>
+                <div class="component-content">
+                  <h4>ESP32 Microcontroller</h4>
+                  <p>Dual-core processor with Wi-Fi/Bluetooth connectivity for data processing and transmission</p>
+                </div>
+              </div>
+              
+              <div class="component-card">
+                <div class="component-icon">
+                  <i class="fas fa-heart" style="color:#ea4335;"></i>
+                </div>
+                <div class="component-content">
+                  <h4>MAX30102 Sensor</h4>
+                  <p>High-precision heart rate and blood oxygen monitoring with advanced algorithms</p>
+                </div>
+              </div>
+              
+              <div class="component-card">
+                <div class="component-icon">
+                  <i class="fas fa-thermometer-half" style="color:#fbbc05;"></i>
+                </div>
+                <div class="component-content">
+                  <h4>DS18B20 Sensor</h4>
+                  <p>Accurate body temperature measurement with ±0.5°C precision</p>
+                </div>
+              </div>
+              
+              <div class="component-card">
+                <div class="component-icon">
+                  <i class="fas fa-running" style="color:#34a853;"></i>
+                </div>
+                <div class="component-content">
+                  <h4>MPU-6050 Sensor</h4>
+                  <p>6-axis motion tracking for activity monitoring and step counting</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="testimonial-item">
+              <p style="font-size:1.2rem; line-height:1.8;">
+                <i class="fas fa-quote-left quote-icon-left"></i>
+                <span>"The Vital Tech T-Shirt represents a breakthrough in wearable health technology. Its ability to provide continuous, clinical-grade data in a comfortable garment opens new possibilities for preventive healthcare and remote patient monitoring. This innovation has the potential to transform how we manage chronic conditions and optimize athletic performance."</span>
+                <i class="fas fa-quote-right quote-icon-right"></i>
+              </p>
+              <div class="testimonial-content">
+                <div class="testimonial-img">DR</div>
+                <div>
+                  <strong style="font-size:1.2rem;">Dr. Othama Tharwat</strong>
+                  <p>prof in Higher institute for engineering and technology , Kafr El Sheikh</p>
+                </div>
+              </div>
+            </div>
+            
+            
+            <h3 style="margin:40px 0 20px; font-size:1.8rem; text-align:center; color:#1a73e8;">Conclusion</h3>
+            <p>
+              The Vital Tech Smart T-Shirt represents a significant advancement in wearable health technology. By seamlessly integrating 
+              medical-grade sensors into comfortable, everyday clothing, we've created a solution that empowers individuals to take control 
+              of their health through continuous, non-intrusive monitoring.
+            </p>
+            <p>
+              This technology has wide-ranging applications from elderly care and chronic disease management to athletic performance 
+              optimization. The real-time data transmission enables healthcare providers to monitor patients remotely, reducing hospital 
+              visits and enabling early intervention when abnormalities are detected.
+            </p>
+            <p>
+              As we continue to refine the technology, we're working to make health monitoring more accessible, affordable, and integrated 
+              into our daily lives, ultimately leading to better health outcomes for people worldwide. The Vital Tech T-Shirt is not just 
+              a piece of clothing - it's a powerful health management tool that brings professional medical monitoring into everyday life.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="portfolio-info">
+            <h3>Project Information</h3>
+            <ul>
+              <li><strong>Category</strong> Health Technology</li>
+              <li><strong>Institution</strong> Higher Institute for Engineering & Technology</li>
+              <li><strong>Location</strong> Kafr El Sheikh, Egypt</li>
+              <li><strong>Project date</strong>DEC 2024</li>
+              
+              <li><strong>Team</strong> Techno Team</li>
+              <li><a href="./assets/files/T-SHIRT SMART TECH.pdf" class="btn-visit" download=""><i class="fas fa-download"></i> Download Report</a></li>
+            </ul>
+            
+            <h3 style="margin-top:30px;">Technical Specifications</h3>
+            <ul>
+              <li><strong>Microcontroller:</strong> ESP32</li>
+              <li><strong>Sensors:</strong> MAX30102, MPU-6050, DS18B20</li>
+              <li><strong>Connectivity:</strong> Wi-Fi, Bluetooth 5.0</li>
+              <li><strong>Battery Life:</strong> 7 days (normal use)</li>
+              <li><strong>Charging:</strong> Wireless (Qi standard)</li>
+            </ul>
+            
+            <h3 style="margin-top:30px;">Monitored Parameters</h3>
+            <ul>
+              <li>Heart Rate (ECG-quality)</li>
+              <li>Blood Oxygen (SpO2)</li>
+              <li>Body Temperature</li>
+              <li>Respiration Rate</li>
+              <li>Activity Level</li>
+              <li>Calorie Expenditure</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section><!-- /Portfolio Details Section -->
+
+  <footer class="footer position-relative">
+    <div class="container">
+      <h3 class="sitename">Vital Tech - Smart Health Monitoring</h3>
+      <p>Innovative wearable technology for proactive health management</p>
+      <div class="social-links">
+        <a href="#"><i></i></a>
+        <a href="#"><i></i></a>
+        <a href="#"><i></i></a>
+        <a href="#"><i></i></a>
+        <a href="#"><i></i></a>
+      </div>
+      <div class="copyright">
+        <span>© 2025</span> <strong class="px-1">Vital Tech</strong> <span>All Rights Reserved</span>
+      </div>
+      <div class="credits">
+        "والله ولى التوفيق" - And God is the Grantor of Success
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Swiper functionality
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.swiper-slide');
+      const totalSlides = slides.length;
+      const pagination = document.querySelector('.swiper-pagination');
+      const prevBtn = document.querySelector('.swiper-button-prev');
+      const nextBtn = document.querySelector('.swiper-button-next');
+      
+      // Create pagination bullets
+      for (let i = 0; i < totalSlides; i++) {
+        const bullet = document.createElement('div');
+        bullet.classList.add('swiper-pagination-bullet');
+        if (i === 0) bullet.classList.add('swiper-pagination-bullet-active');
+        bullet.addEventListener('click', () => goToSlide(i));
+        pagination.appendChild(bullet);
+      }
+      
+      const bullets = document.querySelectorAll('.swiper-pagination-bullet');
+      
+      // Update active slide
+      function updateSlide() {
+        const wrapper = document.querySelector('.swiper-wrapper');
+        wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Update pagination
+        bullets.forEach((bullet, index) => {
+          bullet.classList.toggle('swiper-pagination-bullet-active', index === currentSlide);
+        });
+      }
+      
+      // Navigation functions
+      function goToSlide(index) {
+        currentSlide = (index + totalSlides) % totalSlides;
+        updateSlide();
+      }
+      
+      function nextSlide() {
+        goToSlide(currentSlide + 1);
+      }
+      
+      function prevSlide() {
+        goToSlide(currentSlide - 1);
+      }
+      
+      // Event listeners
+      prevBtn.addEventListener('click', prevSlide);
+      nextBtn.addEventListener('click', nextSlide);
+      
+      // Auto slide
+      let autoSlide = setInterval(nextSlide, 5000);
+      
+      // Pause auto slide on hover
+      const slider = document.querySelector('.portfolio-details-slider');
+      slider.addEventListener('mouseenter', () => clearInterval(autoSlide));
+      slider.addEventListener('mouseleave', () => {
+        autoSlide = setInterval(nextSlide, 5000);
+      });
+      
+      // Initialize
+      updateSlide();
+      
+      // Video player functionality - Fixed with proper promise handling
+      const video = document.getElementById('techVideo');
+      const playButton = document.getElementById('playButton');
+      const videoOverlay = document.getElementById('videoOverlay');
+      const playPauseBtn = document.getElementById('playPauseBtn');
+      const muteBtn = document.getElementById('muteBtn');
+      const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+      // Only add event listeners if elements exist
+      if (playButton && videoOverlay) {
+        playButton.addEventListener('click', async function() {
+          try {
+            videoOverlay.classList.add('hidden');
+            await video.play();
+          } catch (error) {
+            console.error('Video play failed:', error);
+            // Fallback to showing controls
+            video.controls = true;
+          }
+        });
+      }
+
+      if (playPauseBtn) {
+        playPauseBtn.addEventListener('click', function() {
+          if (video.paused) {
+            video.play().catch(e => console.error('Play error:', e));
+          } else {
+            video.pause();
+          }
+        });
+      }
+
+      if (muteBtn) {
+        muteBtn.addEventListener('click', function() {
+          video.muted = !video.muted;
+          muteBtn.textContent = video.muted ? "Unmute" : "Mute";
+        });
+      }
+
+      if (fullscreenBtn) {
+        fullscreenBtn.addEventListener('click', function() {
+          if (video.requestFullscreen) {
+            video.requestFullscreen();
+          } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+          } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+          }
+        });
+      }
+
+      // Update button text based on video state
+      if (video) {
+        video.addEventListener('play', function() {
+          if (playPauseBtn) playPauseBtn.textContent = "Pause";
+        });
+        
+        video.addEventListener('pause', function() {
+          if (playPauseBtn) playPauseBtn.textContent = "Play";
+        });
+        
+        // Update initial mute state
+        if (muteBtn) muteBtn.textContent = video.muted ? "Unmute" : "Mute";
+      }
+    });
+  </script>
+</body>
+</html>
