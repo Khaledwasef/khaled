@@ -1273,7 +1273,7 @@ section,
   transition: 0.3s;
 }
 
-.about .btn {
+.about .btna {
   padding: 8px 40px;
   background: var(--accent-color);
   color: var(--contrast-color);
@@ -1281,7 +1281,7 @@ section,
   transition: 0.3s;
 }
 
-.about .btn:hover{
+.about .btna:hover{
 background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
