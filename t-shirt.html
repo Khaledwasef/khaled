@@ -374,7 +374,6 @@
     }
     
     /* 3D T-Shirt Model Section */
-    /* 3D T-Shirt Section */
     .model-section {
       background: white;
       border-radius: 10px;
@@ -520,33 +519,6 @@
       font-size: 1.2rem;
       opacity: 0.9;
       text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    }
-    
-    .video-controls {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 25px;
-    }
-    
-    .video-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: all 0.3s;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
-    }
-    
-    .video-btn:hover {
-      background: #0d62d9;
-      transform: translateY(-3px);
     }
     
     /* Team Section */
@@ -953,18 +925,16 @@
               </div>
             </div>
             
-            <!-- Video Section - Fixed Version -->
+            <!-- Video Section - Updated with LinkedIn Video -->
             <div class="video-section">
               <h3>Project Demonstration</h3>
-              <p>Watch our smart T-shirt in action with this detailed demonstration</p>
+              <p>Watch our smart T-shirt in action with this detailed demonstration from LinkedIn</p>
               
               <div class="video-container">
                 <div class="video-player">
-                  <!-- تم تعديل مسار الفيديو هنا بشكل صحيح -->
-                  <video id="techVideo" muted playsinline width="100%">
-                    <source src="./assets/vidoe/video1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                  </video>
+                  <!-- LinkedIn Video Embed -->
+                  <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7277661517842427905?compact=1" width="100%" height="100%" frameborder="0" allowfullscreen="" title="منشور مضمن" id="linkedinVideo"></iframe>
+                  
                   <div id="videoOverlay" class="video-overlay">
                     <div class="play-btn" id="playButton">
                       <i class="fas fa-play"></i>
@@ -973,11 +943,6 @@
                     <p>See how our smart T-shirt monitors vital signs in real-time</p>
                   </div>
                 </div>
-              </div>
-              <div class="video-controls">
-                <button class="video-btn" id="playPauseBtn">Play/Pause</button>
-                <button class="video-btn" id="muteBtn">Mute/Unmute</button>
-                <button class="video-btn" id="fullscreenBtn">Fullscreen</button>
               </div>
             </div>
             
@@ -1108,11 +1073,11 @@
       <h3 class="sitename">Vital Tech - Smart Health Monitoring</h3>
       <p>Innovative wearable technology for proactive health management</p>
       <div class="social-links">
-        <a href="#"><i></i></a>
-        <a href="#"><i></i></a>
-        <a href="#"><i></i></a>
-        <a href="#"><i></i></a>
-        <a href="#"><i></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
       </div>
       <div class="copyright">
         <span>© 2025</span> <strong class="px-1">Vital Tech</strong> <span>All Rights Reserved</span>
@@ -1186,69 +1151,23 @@
       // Initialize
       updateSlide();
       
-      // Video player functionality - Fixed with proper promise handling
-      const video = document.getElementById('techVideo');
+      // LinkedIn Video Functionality
       const playButton = document.getElementById('playButton');
       const videoOverlay = document.getElementById('videoOverlay');
-      const playPauseBtn = document.getElementById('playPauseBtn');
-      const muteBtn = document.getElementById('muteBtn');
-      const fullscreenBtn = document.getElementById('fullscreenBtn');
+      const linkedinVideo = document.getElementById('linkedinVideo');
 
-      // Only add event listeners if elements exist
-      if (playButton && videoOverlay) {
-        playButton.addEventListener('click', async function() {
-          try {
-            videoOverlay.classList.add('hidden');
-            await video.play();
-          } catch (error) {
-            console.error('Video play failed:', error);
-            // Fallback to showing controls
-            video.controls = true;
-          }
+      if (playButton && videoOverlay && linkedinVideo) {
+        playButton.addEventListener('click', function() {
+          // Show the LinkedIn video
+          linkedinVideo.style.display = 'block';
+          
+          // Hide the overlay
+          videoOverlay.classList.add('hidden');
+          
+          // Set the src to start playing (if autoplay is supported)
+          // Note: LinkedIn iframes don't support autoplay directly
+          // This will just show the LinkedIn player
         });
-      }
-
-      if (playPauseBtn) {
-        playPauseBtn.addEventListener('click', function() {
-          if (video.paused) {
-            video.play().catch(e => console.error('Play error:', e));
-          } else {
-            video.pause();
-          }
-        });
-      }
-
-      if (muteBtn) {
-        muteBtn.addEventListener('click', function() {
-          video.muted = !video.muted;
-          muteBtn.textContent = video.muted ? "Unmute" : "Mute";
-        });
-      }
-
-      if (fullscreenBtn) {
-        fullscreenBtn.addEventListener('click', function() {
-          if (video.requestFullscreen) {
-            video.requestFullscreen();
-          } else if (video.webkitRequestFullscreen) {
-            video.webkitRequestFullscreen();
-          } else if (video.msRequestFullscreen) {
-            video.msRequestFullscreen();
-          }
-        });
-      }
-
-      // Update button text based on video state
-      if (video) {
-        video.addEventListener('play', function() {
-          if (playPauseBtn) playPauseBtn.textContent = "Pause";
-        });
-        
-        video.addEventListener('pause', function() {
-          if (playPauseBtn) playPauseBtn.textContent = "Play";
-        });
-        
-        // Update initial mute state
-        if (muteBtn) muteBtn.textContent = video.muted ? "Unmute" : "Mute";
       }
     });
   </script>
